@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Data Store" max_length="40" name="x_374824_vcenter_i_data_store" type="collection">
+        <element label="Capacity" max_length="255" name="capacity" type="string_full_utf8"/>
+        <element label="Datastore" max_length="255" name="datastore" type="string_full_utf8"/>
+        <element label="Free Space" max_length="255" name="free_space" type="string_full_utf8"/>
+        <element label="Name" max_length="255" name="name" type="string_full_utf8"/>
+        <element label="Type" max_length="255" name="type" type="string_full_utf8"/>
+    </element>
+</database>
