@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Virtual Machines" max_length="40" name="x_374824_vcenter_i_virtual_machines" type="collection">
+        <element label="CPU Count" max_length="255" name="cpu_count" type="string_full_utf8"/>
+        <element label="Memory Size" max_length="255" name="memory_size" type="string_full_utf8"/>
+        <element label="Name" max_length="255" name="name" type="string_full_utf8"/>
+        <element label="Power State" max_length="255" name="power_state" type="string_full_utf8"/>
+        <element label="VM" max_length="255" name="vm" type="string_full_utf8"/>
+    </element>
+</database>
