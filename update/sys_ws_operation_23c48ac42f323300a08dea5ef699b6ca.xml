@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>POST</http_method>
+        <name>import</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+
+    gs.info('Starting Scripted Rest Endpoint Processing')
+	
+	// request passed in above will be the full message sent to us
+	//We only want the content from the body for now
+	var j = request.body.data;
+	
+	//We received JSON formatted data, print to the logs
+	//For readability, you may need to JSON.parse(j) first, then stringify it
+	gs.debug('Our Endpoint Received Body data: ' + JSON.stringify(j));
+	
+	//Now we want to do something with the message. Lets pass the message body it into a script include.
+	//We will look inside the script include, but ultimately it does it magic and sends us back an OK message or an Error message which will save to status Returned variable
+	var foo = new x_8488_ssn_rest.importUtils();
+	var statusReturned = foo.postUser(j);
+	
+	gs.info('Completing Scripted Rest Endpoint Processing');
+	gs.debug('REST Endpoint completed. Returned: ' + statusReturned.http_status);
+	
+	//Build response back to the system.
+	response.setContentType('application/json');
+	response.setStatus(statusReturned.http_status);
+	var writer = response.getStreamWriter();
+	writer.writeString(JSON.stringify(statusReturned));
+	
+	
+
+})(request, response);]]></operation_script>
+        <operation_uri>/api/x_374824_vcenter_i/userprofile/import</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/import</relative_path>
+        <request_example/>
+        <requires_acl_authorization>false</requires_acl_authorization>
+        <requires_authentication>false</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description/>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-07-17 17:35:26</sys_created_on>
+        <sys_id>23c48ac42f323300a08dea5ef699b6ca</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>import</sys_name>
+        <sys_package display_value="vCenter Integration" source="x_374824_vcenter_i">5c2978222f623300a08dea5ef699b680</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="vCenter Integration">5c2978222f623300a08dea5ef699b680</sys_scope>
+        <sys_update_name>sys_ws_operation_23c48ac42f323300a08dea5ef699b6ca</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-07-17 17:35:26</sys_updated_on>
+        <web_service_definition display_value="UserProfile">a78442c42f323300a08dea5ef699b65b</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn_headers">
     <sys_rest_message_fn_headers action="INSERT_OR_UPDATE">
         <name>Accept</name>
-        <rest_message_function display_value="Default GET">742702e32fe63300a08dea5ef699b672</rest_message_function>
+        <rest_message_function display_value="GET">742702e32fe63300a08dea5ef699b672</rest_message_function>
         <sys_class_name>sys_rest_message_fn_headers</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2019-07-16 04:15:54</sys_created_on>

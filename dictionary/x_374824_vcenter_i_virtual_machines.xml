@@ -5,5 +5,8 @@
         <element label="Name" max_length="255" name="name" type="string_full_utf8"/>
         <element label="Power State" max_length="255" name="power_state" type="string_full_utf8"/>
         <element label="VM" max_length="255" name="vm" type="string_full_utf8"/>
+        <index name="index">
+            <element name="name"/>
+        </index>
     </element>
 </database>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_fix">
+    <sys_script_fix action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <before>false</before>
+        <description>Returns</description>
+        <flush_cache>false</flush_cache>
+        <name>vCenter VMs from API</name>
+        <record_for_rollback>false</record_for_rollback>
+        <run_once>true</run_once>
+        <script><![CDATA[ try {
+ var r = new sn_ws.RESTMessageV2('x_374824_vcenter_i.vCenter VMs', 'GET');
+ r.setStringParameterNoEscape('sessionid', '402e38ad7ebf80040c363bf27102eaad');
+ r.setStringParameterNoEscape('ipaddress', '10.20.20.50');
+
+//override authentication profile 
+//authentication type ='basic'/ 'oauth2'
+//r.setAuthentication(authentication type, profile name);
+
+//set a MID server name if one wants to run the message on MID
+//r.setMIDServer('MY_MID_SERVER');
+
+//if the message is configured to communicate through ECC queue, either
+//by setting a MID server or calling executeAsync, one needs to set skip_sensor
+//to true. Otherwise, one may get an intermittent error that the response body is null
+//r.setEccParameter('skip_sensor', true);
+
+ var response = r.execute();
+ var responseBody = response.getBody();
+ var httpStatus = response.getStatusCode();
+
+
+
+gs.info(httpStatus);
+// var parsed = JSON.parse(responseBody);
+// var values = parsed.values;
+
+/*
+for (var i =0; i < values.length; i++ ){
+	gs.addInfoMessage(values[i]);	
+	
+	
+}
+*/
+//if(response.getStatusCode() == "200")
+//{
+
+var jasonString = responseBody;
+//var parser = new JSONParser();
+var parsed = global.JSON.parse(jasonString);
+	 
+	 
+for (var i in parsed.value)
+	{
+		var memsize = parsed.value[i].memory_size_MiB;
+		var vm = parsed.value[i].vm;
+		var name = parsed.value[i].name;
+		var power = parsed.value[i].power_state;
+		var cpu = parsed.value[i].cpu_count;
+		
+		var rec = new GlideRecord('x_374824_vcenter_i_virtual_machines_tran');
+		  
+			rec.initialize();
+		
+			rec.memory_size_mib = memsize;
+			rec.vm = vm;
+			rec.name = name;
+			rec.power_state = power;
+			rec.cpu_count = cpu;
+		//gr.u_name = cmdb[i]['name'];
+		//gr.u_other_attributes_etc=cmdb[i]['description'];
+		
+			rec.insert();
+		
+		
+		
+	}
+	 
+ 
+//} 
+	 
+gs.addInfoMessage('Parsed JSON: ' + parsed);
+
+// gs.addInfoMessage(responseBody);
+// gs.addInfoMessage(httpStatus);
+	 
+}
+catch(ex) {
+ var message = ex.message;
+}]]></script>
+        <sys_class_name>sys_script_fix</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-07-16 22:20:18</sys_created_on>
+        <sys_id>ba7f393b2f263300a08dea5ef699b6bc</sys_id>
+        <sys_mod_count>29</sys_mod_count>
+        <sys_name>vCenter VMs from API</sys_name>
+        <sys_package display_value="vCenter Integration" source="x_374824_vcenter_i">5c2978222f623300a08dea5ef699b680</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="vCenter Integration">5c2978222f623300a08dea5ef699b680</sys_scope>
+        <sys_update_name>sys_script_fix_ba7f393b2f263300a08dea5ef699b6bc</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-07-18 18:15:34</sys_updated_on>
+        <unloadable>false</unloadable>
+    </sys_script_fix>
+</record_update>

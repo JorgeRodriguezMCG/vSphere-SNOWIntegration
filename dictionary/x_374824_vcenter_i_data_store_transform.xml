@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element extends="sys_import_set_row" label="Data Centers Transform" max_length="40" name="x_374824_vcenter_i_data_store_transform" type="collection">
+        <element label="datacenter" max_length="255" name="datacenter" type="string_full_utf8"/>
+        <element label="name" max_length="255" name="name" type="string_full_utf8"/>
+    </element>
+</database>

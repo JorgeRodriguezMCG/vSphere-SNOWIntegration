@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn_headers">
     <sys_rest_message_fn_headers action="INSERT_OR_UPDATE">
         <name>Content-Type</name>
-        <rest_message_function display_value="get">14f8fcef2fe23300a08dea5ef699b61b</rest_message_function>
+        <rest_message_function display_value="GET">14f8fcef2fe23300a08dea5ef699b61b</rest_message_function>
         <sys_class_name>sys_rest_message_fn_headers</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2019-07-15 22:35:42</sys_created_on>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="ecc_agent_script_include">
+    <ecc_agent_script_include action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Takes the JSON data and Parses</description>
+        <name>importUtils</name>
+        <script><![CDATA[var importUtils = Class.creat();
+importUtils.prototype = {
+	initialize: function(){
+	},
+	
+	postUser: function(j){
+	gs.debug('Script Include importUtils postUser has been called');
+		
+	
+	try{
+		var answer = {}; //Repare response payload. Will write Sucess/error messages here
+		var importSetRowUser = 'x_8488_ssn_rest_import_user';
+		var importSetRowMultiLoc = 'x_8488_ssn_rest_impor_multiple_locations';
+		
+		gs.debug('Script Include received payload: ' + JSON.stringify(j)); // Displays the data
+		
+		var nA = 'sourceA'; 
+		var nAProfile = 'profile';
+		var nB = 'sourceB';
+		var nBloc = 'locations';
+		
+		
+		// --Check Validity of JSON content before proceding
+		// -- check for value in the file
+		
+		if (j(nA) == undefined && j[nB] == undefined)
+			{
+				answer.http_status = "400";
+				answer.status_message = 'We expected to see nodes for ' + nA + ' or ' + nB + ' bus those were not found. Please confirm before resending';
+				gs.error('ESB Rejected: ' + JSON.stringify(answer));
+				return answer;
+				
+				
+			}
+		
+		
+		gs.debug('Script Include import Utils is creating GlideRecord to insert onto user Import Set Row');
+		
+		//Prepare new records on import set row tables to received and process customer profile
+		
+		var userIn = new GlideRecord(importSetRowUser);
+		userIn.initialize();
+		
+		
+		if( j[nA] != undefined)
+			{
+				userIn.unique_identifier = j[nA].employeeNum;
+				userIn.first_name = j[nA].firstName;
+				userIn.location = j[nA].location;
+				
+				
+			}
+		
+		
+		
+		userIn.insert();
+		
+		
+		//Look through data to check on data import
+		var importSetRow = new GlideRecord(importSetRowUser);
+		importSetRow.get(resultSysID);
+		
+		// Check the process of transform map
+		var importSetRowStatus = importSetRow.sys_import_state;
+		
+		
+		//Pack up all clear response
+		if(importSetRowStatus == 'ignorded' || importSetRowStatus == 'ignore'){
+			
+			answer.http_status = "200";
+			answer.status_message = "User payload accept and processed. Data provided matched local data set, update was ignored for " + userIn.unique_identifier;
+		}
+		
+		else if(importSetRowStatus == 'updated'){
+			answer.http_status = "200";
+			answer.status_message = "User payload accepted and processed. Account updated for " + userIn.unique_identifier;
+			
+		}
+		
+		else if (importSetRowStatus == 'inserted'){
+			
+			answer.http_status = "201";
+			answer.status_message = "User payload accepted and processed. Profile created for " + userIn.unique_identifier;
+			
+		}else {
+			
+			var msg = 'Unexpected import result during user transform: ' + importSetRow.sys_import_state.toString() + ' ' +
+				importSetRow.sys_row_error.error_message.toString() + 'and error code is' + importSetRow.sys_row_error.error_code.toString() + 'UserId of user' + importSetRow.unique_identifier;
+			answer.http_status = "500";
+			answer.status_message = msg;
+			
+		}
+		
+		
+		gs.debug('Script Include completing with: ' + JSON.stringify(answer));
+		return answer;
+		
+		
+		
+	}
+	 
+	 catch(ex){
+		 answer.http_status = '500';
+		 answer.status_message = 'Internal ServiceNow Error: ' + ex;
+		 gs.error(JSON.strigify(answer));
+		 return answer;
+	 }
+		
+	},
+	
+	
+	
+	
+	
+	type: 'importUtils'
+	
+};]]></script>
+        <sys_class_name>ecc_agent_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-07-17 19:31:43</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>12788e482f323300a08dea5ef699b681</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>importUtils</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="vCenter Integration" source="x_374824_vcenter_i">5c2978222f623300a08dea5ef699b680</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="vCenter Integration">5c2978222f623300a08dea5ef699b680</sys_scope>
+        <sys_update_name>ecc_agent_script_include_12788e482f323300a08dea5ef699b681</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-07-17 19:31:43</sys_updated_on>
+    </ecc_agent_script_include>
+</record_update>
