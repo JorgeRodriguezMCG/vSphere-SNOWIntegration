@@ -2,17 +2,29 @@
     <sys_script_fix action="INSERT_OR_UPDATE">
         <active>true</active>
         <before>false</before>
-        <description>This sends an API call to turn off a selected VM</description>
+        <description>This sends an API call to turn off a target VM and return its power status.</description>
         <flush_cache>false</flush_cache>
         <name>vCenter PowerOff VM API</name>
         <record_for_rollback>false</record_for_rollback>
         <run_once>true</run_once>
-        <script><![CDATA[ try {
+        <script><![CDATA[try {
+ var targetVM = 'vm-117';
+
+ /*
  var r = new sn_ws.RESTMessageV2('x_374824_vcenter_i.vCenter PowerOff VM', 'POST');
  r.setStringParameterNoEscape('sessionid', '402e38ad7ebf80040c363bf27102eaad');
- r.setStringParameterNoEscape('vmname', 'TESTB4');
+ r.setStringParameterNoEscape('vmname', targetVM);
  r.setStringParameterNoEscape('ipaddress', '10.20.20.50');
+ var response = r.execute();
+*/
+ 
+ 
 
+ 
+ var t = new sn_ws.RESTMessageV2('x_374824_vcenter_i.vCenter VM Power Status', 'GET');
+ t.setStringParameterNoEscape('sessionid', 'cfa4a855474a832d7535fa790d530687');
+ t.setStringParameterNoEscape('vmname', targetVM);
+ t.setStringParameterNoEscape('ipaddress', '10.20.20.50');
 //override authentication profile 
 //authentication type ='basic'/ 'oauth2'
 //r.setAuthentication(authentication type, profile name);
@@ -25,66 +37,33 @@
 //to true. Otherwise, one may get an intermittent error that the response body is null
 //r.setEccParameter('skip_sensor', true);
 
- var response = r.execute();
+ var response = t.execute();
  var responseBody = response.getBody();
  var httpStatus = response.getStatusCode();
 
 
 
-gs.info(httpStatus);
-// var parsed = JSON.parse(responseBody);
-// var values = parsed.values;
-
-/*
-for (var i =0; i < values.length; i++ ){
-	gs.addInfoMessage(values[i]);	
-	
-	
-}
-*/
-//if(response.getStatusCode() == "200")
-//{
-
-var jasonString = responseBody;
-//var parser = new JSONParser();
-var parsed = global.JSON.parse(jasonString);
-	 
-	 
-for (var i in parsed.value)
+	if(response.getStatusCode() == "200")
 	{
-		var memsize = parsed.value[i].memory_size_MiB;
-		var vm = parsed.value[i].vm;
-		var name = parsed.value[i].name;
-		var power = parsed.value[i].power_state;
-		var cpu = parsed.value[i].cpu_count;
+
+	var jasonString = responseBody;
+	var parsed = global.JSON.parse(jasonString);
+	 
+
+	//stores the state into a seperate value	
+	var vmstate = parsed.value.state;
 		
-		var rec = new GlideRecord('x_374824_vcenter_i_virtual_machines_tran');
-		  
-			rec.initialize();
-		
-			rec.memory_size_mib = memsize;
-			rec.vm = vm;
-			rec.name = name;
-			rec.power_state = power;
-			rec.cpu_count = cpu;
-		//gr.u_name = cmdb[i]['name'];
-		//gr.u_other_attributes_etc=cmdb[i]['description'];
-		
-			rec.insert();
-		
-		
-		
+
+	// Updates the VM record that has the vmstate variable
+	var rec = new GlideRecord('x_374824_vcenter_i_virtual_machines');		
+	rec.get('vm', targetVM);
+	rec.power_state = vmstate;	
+	rec.update('power_state');
+			
 	}
 	 
- 
-//} 
-	 
-gs.addInfoMessage('Parsed JSON: ' + parsed);
-
-// gs.addInfoMessage(responseBody);
-// gs.addInfoMessage(httpStatus);
-	 
 }
+
 catch(ex) {
  var message = ex.message;
 }]]></script>
@@ -92,14 +71,14 @@ catch(ex) {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2019-07-18 18:30:00</sys_created_on>
         <sys_id>edbcd3142fb23300a08dea5ef699b653</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>44</sys_mod_count>
         <sys_name>vCenter PowerOff VM API</sys_name>
         <sys_package display_value="vCenter Integration" source="x_374824_vcenter_i">5c2978222f623300a08dea5ef699b680</sys_package>
         <sys_policy/>
         <sys_scope display_value="vCenter Integration">5c2978222f623300a08dea5ef699b680</sys_scope>
         <sys_update_name>sys_script_fix_edbcd3142fb23300a08dea5ef699b653</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-07-18 18:30:00</sys_updated_on>
+        <sys_updated_on>2019-07-18 20:56:51</sys_updated_on>
         <unloadable>false</unloadable>
     </sys_script_fix>
 </record_update>
