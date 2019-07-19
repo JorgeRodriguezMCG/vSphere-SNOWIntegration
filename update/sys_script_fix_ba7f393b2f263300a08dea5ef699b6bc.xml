@@ -8,9 +8,18 @@
         <record_for_rollback>false</record_for_rollback>
         <run_once>true</run_once>
         <script><![CDATA[ try {
+	var endpoint = 'Matei vCenter';
+	var cred = new GlideRecord('x_374824_vcenter_i_vcenter_endpoints');		
+	cred.get('name', endpoint);
+	
+	var ipaddress = cred.ip_address;
+	var sessionid = cred.session_id;
+			
+	 
+	 
  var r = new sn_ws.RESTMessageV2('x_374824_vcenter_i.vCenter VMs', 'GET');
- r.setStringParameterNoEscape('sessionid', '402e38ad7ebf80040c363bf27102eaad');
- r.setStringParameterNoEscape('ipaddress', '10.20.20.50');
+ r.setStringParameterNoEscape('sessionid', sessionid);
+ r.setStringParameterNoEscape('ipaddress', ipaddress);
 
 //override authentication profile 
 //authentication type ='basic'/ 'oauth2'
@@ -28,9 +37,6 @@
  var responseBody = response.getBody();
  var httpStatus = response.getStatusCode();
 
-
-
-gs.info(httpStatus);
 // var parsed = JSON.parse(responseBody);
 // var values = parsed.values;
 
@@ -43,10 +49,7 @@ for (var i =0; i < values.length; i++ ){
 */
 //if(response.getStatusCode() == "200")
 //{
-
-var jasonString = responseBody;
-//var parser = new JSONParser();
-var parsed = global.JSON.parse(jasonString);
+var parsed = global.JSON.parse(responseBody);
 	 
 	 
 for (var i in parsed.value)
@@ -78,7 +81,7 @@ for (var i in parsed.value)
  
 //} 
 	 
-gs.addInfoMessage('Parsed JSON: ' + parsed);
+gs.addInfoMessage(parsed);
 
 // gs.addInfoMessage(responseBody);
 // gs.addInfoMessage(httpStatus);
@@ -91,14 +94,14 @@ catch(ex) {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2019-07-16 22:20:18</sys_created_on>
         <sys_id>ba7f393b2f263300a08dea5ef699b6bc</sys_id>
-        <sys_mod_count>29</sys_mod_count>
+        <sys_mod_count>36</sys_mod_count>
         <sys_name>vCenter VMs from API</sys_name>
         <sys_package display_value="vCenter Integration" source="x_374824_vcenter_i">5c2978222f623300a08dea5ef699b680</sys_package>
         <sys_policy/>
         <sys_scope display_value="vCenter Integration">5c2978222f623300a08dea5ef699b680</sys_scope>
         <sys_update_name>sys_script_fix_ba7f393b2f263300a08dea5ef699b6bc</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-07-18 18:15:34</sys_updated_on>
+        <sys_updated_on>2019-07-19 20:00:32</sys_updated_on>
         <unloadable>false</unloadable>
     </sys_script_fix>
 </record_update>

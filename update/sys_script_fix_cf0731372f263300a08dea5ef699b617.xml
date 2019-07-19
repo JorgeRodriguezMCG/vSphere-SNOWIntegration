@@ -9,13 +9,13 @@
         <run_once>true</run_once>
         <script><![CDATA[try { 
 
-	var endpoint = 'Main vCenter';
-	var rec = new GlideRecord('x_374824_vcenter_i_vcenter_endpoints');		
-	rec.get('name', endpoint);
+	var endpoint = 'Matei vCenter';
+	var cred = new GlideRecord('x_374824_vcenter_i_vcenter_endpoints');		
+	cred.get('name', endpoint);
 	
-	var ipaddress = rec.ip_address;
+	var ipaddress = cred.ip_address;
 			
-	 var credentials = rec.user_name + ":" + rec.password;
+	 var credentials = cred.user_name + ":" + cred.password;
 	 var encodedcredentials = gs.base64Encode(credentials) ;
 	 
 	
@@ -56,8 +56,8 @@ if(httpStatus == "200")
 		
 	gs.addInfoMessage(value);	
 	
-	rec.session_id = value;	
-	rec.update();
+	cred.session_id = value;	
+	cred.update();
 
 	 
 	 
@@ -74,14 +74,14 @@ catch(ex) {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2019-07-16 21:54:50</sys_created_on>
         <sys_id>cf0731372f263300a08dea5ef699b617</sys_id>
-        <sys_mod_count>41</sys_mod_count>
+        <sys_mod_count>46</sys_mod_count>
         <sys_name>vCenter Authentication from API</sys_name>
         <sys_package display_value="vCenter Integration" source="x_374824_vcenter_i">5c2978222f623300a08dea5ef699b680</sys_package>
         <sys_policy/>
         <sys_scope display_value="vCenter Integration">5c2978222f623300a08dea5ef699b680</sys_scope>
         <sys_update_name>sys_script_fix_cf0731372f263300a08dea5ef699b617</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-07-19 16:40:16</sys_updated_on>
+        <sys_updated_on>2019-07-19 19:59:40</sys_updated_on>
         <unloadable>false</unloadable>
     </sys_script_fix>
 </record_update>

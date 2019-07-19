@@ -8,23 +8,33 @@
         <record_for_rollback>false</record_for_rollback>
         <run_once>true</run_once>
         <script><![CDATA[try {
- var targetVM = 'vm-117';
+ var targetVM = 'vm-158';
+	
+ var endpoint = 'Matei vCenter';
+ var cred = new GlideRecord('x_374824_vcenter_i_vcenter_endpoints');		
+ cred.get('name', endpoint);
+	
+ var ipaddress = cred.ip_address;
+ var sessionid = cred.session_id;
+ 
 
- /*
  var r = new sn_ws.RESTMessageV2('x_374824_vcenter_i.vCenter PowerOff VM', 'POST');
- r.setStringParameterNoEscape('sessionid', '402e38ad7ebf80040c363bf27102eaad');
+ r.setStringParameterNoEscape('sessionid', sessionid);
  r.setStringParameterNoEscape('vmname', targetVM);
- r.setStringParameterNoEscape('ipaddress', '10.20.20.50');
+ r.setStringParameterNoEscape('ipaddress', ipaddress);
  var response = r.execute();
-*/
+
  
- 
+if(response.getStatusCode() == "200")
+	{
+
 
  
  var t = new sn_ws.RESTMessageV2('x_374824_vcenter_i.vCenter VM Power Status', 'GET');
- t.setStringParameterNoEscape('sessionid', 'cfa4a855474a832d7535fa790d530687');
+ t.setStringParameterNoEscape('sessionid', sessionid);
  t.setStringParameterNoEscape('vmname', targetVM);
- t.setStringParameterNoEscape('ipaddress', '10.20.20.50');
+ t.setStringParameterNoEscape('ipaddress', ipaddress);
+	
 //override authentication profile 
 //authentication type ='basic'/ 'oauth2'
 //r.setAuthentication(authentication type, profile name);
@@ -37,16 +47,16 @@
 //to true. Otherwise, one may get an intermittent error that the response body is null
 //r.setEccParameter('skip_sensor', true);
 
- var response = t.execute();
- var responseBody = response.getBody();
- var httpStatus = response.getStatusCode();
+ var response2 = t.execute();
+ var responseBody2 = response2.getBody();
+ var httpStatus2 = response2.getStatusCode();
 
 
 
-	if(response.getStatusCode() == "200")
+	if(response2.getStatusCode() == "200")
 	{
 
-	var jasonString = responseBody;
+	var jasonString = responseBody2;
 	var parsed = global.JSON.parse(jasonString);
 	 
 
@@ -65,7 +75,10 @@
 	rec.update('power_state');
 			
 	}
-	 
+	
+		
+	}
+	
 }
 
 catch(ex) {
@@ -75,14 +88,14 @@ catch(ex) {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2019-07-18 18:30:00</sys_created_on>
         <sys_id>edbcd3142fb23300a08dea5ef699b653</sys_id>
-        <sys_mod_count>56</sys_mod_count>
+        <sys_mod_count>71</sys_mod_count>
         <sys_name>vCenter PowerOff VM API</sys_name>
         <sys_package display_value="vCenter Integration" source="x_374824_vcenter_i">5c2978222f623300a08dea5ef699b680</sys_package>
         <sys_policy/>
         <sys_scope display_value="vCenter Integration">5c2978222f623300a08dea5ef699b680</sys_scope>
         <sys_update_name>sys_script_fix_edbcd3142fb23300a08dea5ef699b653</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-07-18 22:22:38</sys_updated_on>
+        <sys_updated_on>2019-07-19 20:20:43</sys_updated_on>
         <unloadable>false</unloadable>
     </sys_script_fix>
 </record_update>
