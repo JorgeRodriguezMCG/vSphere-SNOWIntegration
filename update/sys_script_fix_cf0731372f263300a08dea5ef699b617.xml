@@ -7,10 +7,23 @@
         <name>vCenter Authentication from API</name>
         <record_for_rollback>false</record_for_rollback>
         <run_once>true</run_once>
-        <script><![CDATA[ try { 
- var r = new sn_ws.RESTMessageV2('x_374824_vcenter_i.vCenter Authentication', 'POST');
- r.setStringParameterNoEscape('auth', 'YWRtaW5pc3RyYXRvckBtY2dhdXRvbWF0aW9uLmNvbTpjQEYyMCE3TUNH');
- r.setStringParameterNoEscape('ipaddress', '10.20.20.50');
+        <script><![CDATA[try { 
+
+	var endpoint = 'Main vCenter';
+	var rec = new GlideRecord('x_374824_vcenter_i_vcenter_endpoints');		
+	rec.get('name', endpoint);
+	
+	var ipaddress = rec.ip_address;
+			
+	 var credentials = rec.user_name + ":" + rec.password;
+	 var encodedcredentials = gs.base64Encode(credentials) ;
+	 
+	
+	
+
+	 var r = new sn_ws.RESTMessageV2('x_374824_vcenter_i.vCenter Authentication', 'POST');
+	 r.setStringParameterNoEscape('auth', encodedcredentials);
+	 r.setStringParameterNoEscape('ipaddress', ipaddress);
 
 //override authentication profile 
 //authentication type ='basic'/ 'oauth2'
@@ -29,32 +42,46 @@
  var httpStatus = response.getStatusCode();
 	 
 
+	
 	//gs.addInfoMessage(responseBody);
 	//gs.addInfoMessage(httpStatus);
 	 
-	 
-var parsed = JSON.parse(responseBody);
+if(httpStatus == "200")
+	{
 
-var value = parsed.value;
 
-gs.info(value);	 
+	var parsed = global.JSON.parse(responseBody);
+
+	var value = parsed.value;
+		
+	gs.addInfoMessage(value);	
+	
+	rec.session_id = value;	
+	rec.update();
+
 	 
+	 
+	}
+	
+	
+	
 }
 catch(ex) {
  var message = ex.message;
-}]]></script>
+}
+]]></script>
         <sys_class_name>sys_script_fix</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2019-07-16 21:54:50</sys_created_on>
         <sys_id>cf0731372f263300a08dea5ef699b617</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>41</sys_mod_count>
         <sys_name>vCenter Authentication from API</sys_name>
         <sys_package display_value="vCenter Integration" source="x_374824_vcenter_i">5c2978222f623300a08dea5ef699b680</sys_package>
         <sys_policy/>
         <sys_scope display_value="vCenter Integration">5c2978222f623300a08dea5ef699b680</sys_scope>
         <sys_update_name>sys_script_fix_cf0731372f263300a08dea5ef699b617</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-07-16 22:12:53</sys_updated_on>
+        <sys_updated_on>2019-07-19 16:40:16</sys_updated_on>
         <unloadable>false</unloadable>
     </sys_script_fix>
 </record_update>

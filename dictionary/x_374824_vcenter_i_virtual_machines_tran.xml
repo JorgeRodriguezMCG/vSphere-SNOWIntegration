@@ -3,6 +3,7 @@
         <element label="CPU count" max_length="255" name="cpu_count" type="string_full_utf8"/>
         <element label="memory_size_MiB" max_length="255" name="memory_size_mib" type="string_full_utf8"/>
         <element label="name" max_length="255" name="name" type="string_full_utf8"/>
+        <element label="Password" max_length="255" name="password" type="password2"/>
         <element label="Power state" max_length="255" name="power_state" type="string_full_utf8"/>
         <element attributes="import_attribute_name=u_json,edge_encryption_enabled=true" label="JSON" max_length="255" name="u_json" type="string"/>
         <element label="vm" max_length="255" name="vm" type="string_full_utf8"/>
