@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_fix">
+    <sys_script_fix action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <before>false</before>
+        <description>This sends an API call to turn on a target VM and return its power status.</description>
+        <flush_cache>false</flush_cache>
+        <name>vCenter PowerOn VM API</name>
+        <record_for_rollback>false</record_for_rollback>
+        <run_once>true</run_once>
+        <script><![CDATA[try {
+ var targetVM = 'vm-158';
+	
+ var endpoint = 'Matei vCenter';
+ var cred = new GlideRecord('x_374824_vcenter_i_vcenter_endpoints');		
+ cred.get('name', endpoint);
+	
+ var ipaddress = cred.ip_address;
+ var sessionid = cred.session_id;
+ 
+
+ var r = new sn_ws.RESTMessageV2('x_374824_vcenter_i.vCenter PowerOn VM', 'POST');
+ r.setStringParameterNoEscape('sessionid', sessionid);
+ r.setStringParameterNoEscape('vmname', targetVM);
+ r.setStringParameterNoEscape('ipaddress', ipaddress);
+ var response = r.execute();
+
+ 
+if(response.getStatusCode() == "200")
+	{
+
+
+ 
+ var t = new sn_ws.RESTMessageV2('x_374824_vcenter_i.vCenter VM Power Status', 'GET');
+ t.setStringParameterNoEscape('sessionid', sessionid);
+ t.setStringParameterNoEscape('vmname', targetVM);
+ t.setStringParameterNoEscape('ipaddress', ipaddress);
+	
+//override authentication profile 
+//authentication type ='basic'/ 'oauth2'
+//r.setAuthentication(authentication type, profile name);
+
+//set a MID server name if one wants to run the message on MID
+//r.setMIDServer('MY_MID_SERVER');
+
+//if the message is configured to communicate through ECC queue, either
+//by setting a MID server or calling executeAsync, one needs to set skip_sensor
+//to true. Otherwise, one may get an intermittent error that the response body is null
+//r.setEccParameter('skip_sensor', true);
+
+ var response2 = t.execute();
+ var responseBody2 = response2.getBody();
+ var httpStatus2 = response2.getStatusCode();
+
+
+
+	if(response2.getStatusCode() == "200")
+	{
+
+	var jasonString = responseBody2;
+	var parsed = global.JSON.parse(jasonString);
+	 
+
+	//stores the state into a seperate value	
+	var vmstate = parsed.value.state;
+	 
+	
+		
+	
+		
+
+	// Updates the VM record that has the vmstate variable
+	var rec = new GlideRecord('x_374824_vcenter_i_virtual_machines');		
+	rec.get('vm', targetVM);
+	rec.power_state = vmstate;	
+	rec.update('power_state');
+			
+	}
+	
+		
+	}
+	
+}
+
+catch(ex) {
+ var message = ex.message;
+}]]></script>
+        <sys_class_name>sys_script_fix</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-07-19 21:51:41</sys_created_on>
+        <sys_id>b7a591fc2ff23300a08dea5ef699b6df</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>vCenter PowerOn VM API</sys_name>
+        <sys_package display_value="vCenter Integration" source="x_374824_vcenter_i">5c2978222f623300a08dea5ef699b680</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="vCenter Integration">5c2978222f623300a08dea5ef699b680</sys_scope>
+        <sys_update_name>sys_script_fix_b7a591fc2ff23300a08dea5ef699b6df</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-07-19 21:51:41</sys_updated_on>
+        <unloadable>false</unloadable>
+    </sys_script_fix>
+</record_update>

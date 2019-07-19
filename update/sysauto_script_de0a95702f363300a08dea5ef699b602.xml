@@ -1,12 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_fix">
-    <sys_script_fix action="INSERT_OR_UPDATE">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
         <active>true</active>
-        <before>false</before>
-        <description>Returns</description>
-        <flush_cache>false</flush_cache>
-        <name>vCenter VMs from API</name>
-        <record_for_rollback>false</record_for_rollback>
-        <run_once>true</run_once>
+        <condition/>
+        <conditional>false</conditional>
+        <name>Get VMs: Matei Vcenter</name>
+        <run_as display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2019-07-19 22:08:47</run_start>
+        <run_time>1970-01-01 20:00:00</run_time>
+        <run_type>daily</run_type>
         <script><![CDATA[ try {
 	var endpoint = 'Matei vCenter';
 	var cred = new GlideRecord('x_374824_vcenter_i_vcenter_endpoints');		
@@ -88,18 +93,18 @@ gs.addInfoMessage(parsed);
 catch(ex) {
  var message = ex.message;
 }]]></script>
-        <sys_class_name>sys_script_fix</sys_class_name>
+        <sys_class_name>sysauto_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2019-07-16 22:20:18</sys_created_on>
-        <sys_id>ba7f393b2f263300a08dea5ef699b6bc</sys_id>
-        <sys_mod_count>38</sys_mod_count>
-        <sys_name>vCenter VMs from API</sys_name>
+        <sys_created_on>2019-07-19 22:10:09</sys_created_on>
+        <sys_id>de0a95702f363300a08dea5ef699b602</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Get VMs: Matei Vcenter</sys_name>
         <sys_package display_value="vCenter Integration" source="x_374824_vcenter_i">5c2978222f623300a08dea5ef699b680</sys_package>
         <sys_policy/>
         <sys_scope display_value="vCenter Integration">5c2978222f623300a08dea5ef699b680</sys_scope>
-        <sys_update_name>sys_script_fix_ba7f393b2f263300a08dea5ef699b6bc</sys_update_name>
+        <sys_update_name>sysauto_script_de0a95702f363300a08dea5ef699b602</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-07-19 21:24:48</sys_updated_on>
-        <unloadable>false</unloadable>
-    </sys_script_fix>
+        <sys_updated_on>2019-07-19 22:10:09</sys_updated_on>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
 </record_update>

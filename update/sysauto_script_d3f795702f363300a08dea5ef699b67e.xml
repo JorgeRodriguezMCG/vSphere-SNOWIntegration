@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition/>
+        <conditional>false</conditional>
+        <name>Auth: Matei vCenter</name>
+        <run_as display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2019-07-19 21:59:50</run_start>
+        <run_time>1970-01-01 09:00:00</run_time>
+        <run_type>daily</run_type>
+        <script><![CDATA[try { 
+
+	var endpoint = 'Matei vCenter';
+	var cred = new GlideRecord('x_374824_vcenter_i_vcenter_endpoints');		
+	cred.get('name', endpoint);
+	
+	var ipaddress = cred.ip_address;
+			
+	 var credentials = cred.user_name + ":" + cred.password;
+	 var encodedcredentials = gs.base64Encode(credentials) ;
+	 
+	
+	
+
+	 var r = new sn_ws.RESTMessageV2('x_374824_vcenter_i.vCenter Authentication', 'POST');
+	 r.setStringParameterNoEscape('auth', encodedcredentials);
+	 r.setStringParameterNoEscape('ipaddress', ipaddress);
+
+//override authentication profile 
+//authentication type ='basic'/ 'oauth2'
+//r.setAuthentication(authentication type, profile name);
+
+//set a MID server name if one wants to run the message on MID
+//r.setMIDServer('MY_MID_SERVER');
+
+//if the message is configured to communicate through ECC queue, either
+//by setting a MID server or calling executeAsync, one needs to set skip_sensor
+//to true. Otherwise, one may get an intermittent error that the response body is null
+//r.setEccParameter('skip_sensor', true);
+
+ var response = r.execute();
+ var responseBody = response.getBody();
+ var httpStatus = response.getStatusCode();
+	 
+
+	
+	//gs.addInfoMessage(responseBody);
+	//gs.addInfoMessage(httpStatus);
+	 
+if(httpStatus == "200")
+	{
+
+
+	var parsed = global.JSON.parse(responseBody);
+
+	var value = parsed.value;
+		
+	gs.addInfoMessage(value);	
+	
+	cred.session_id = value;	
+	cred.update();
+
+	 
+	 
+	}
+	
+	
+	
+}
+catch(ex) {
+ var message = ex.message;
+}
+]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-07-19 22:08:09</sys_created_on>
+        <sys_id>d3f795702f363300a08dea5ef699b67e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Auth: Matei vCenter</sys_name>
+        <sys_package display_value="vCenter Integration" source="x_374824_vcenter_i">5c2978222f623300a08dea5ef699b680</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="vCenter Integration">5c2978222f623300a08dea5ef699b680</sys_scope>
+        <sys_update_name>sysauto_script_d3f795702f363300a08dea5ef699b67e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-07-19 22:08:09</sys_updated_on>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>
