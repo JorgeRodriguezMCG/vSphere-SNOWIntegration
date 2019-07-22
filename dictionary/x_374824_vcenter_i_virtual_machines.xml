@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element label="Virtual Machines" max_length="40" name="x_374824_vcenter_i_virtual_machines" type="collection">
         <element label="CPU Count" max_length="255" name="cpu_count" read_only="true" type="string_full_utf8"/>
+        <element label="Endpoint" max_length="255" name="endpoint" type="string_full_utf8"/>
         <element label="Memory Size" max_length="255" name="memory_size" read_only="true" type="string_full_utf8"/>
         <element label="Name" max_length="255" name="name" read_only="true" type="string_full_utf8"/>
         <element label="Power State" max_length="255" name="power_state" read_only="true" type="string_full_utf8"/>

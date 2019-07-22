@@ -68,7 +68,7 @@ for (var i in parsed.value)
 			rec.name = name;
 			rec.power_state = power;
 			rec.cpu_count = cpu;
-			
+			rec.endpoint = endpoint;
 			
 			rec.insert();
 		
@@ -92,14 +92,14 @@ catch(ex) {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2019-07-16 22:20:18</sys_created_on>
         <sys_id>ba7f393b2f263300a08dea5ef699b6bc</sys_id>
-        <sys_mod_count>38</sys_mod_count>
+        <sys_mod_count>39</sys_mod_count>
         <sys_name>vCenter VMs from API</sys_name>
         <sys_package display_value="vCenter Integration" source="x_374824_vcenter_i">5c2978222f623300a08dea5ef699b680</sys_package>
         <sys_policy/>
         <sys_scope display_value="vCenter Integration">5c2978222f623300a08dea5ef699b680</sys_scope>
         <sys_update_name>sys_script_fix_ba7f393b2f263300a08dea5ef699b6bc</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-07-19 21:24:48</sys_updated_on>
+        <sys_updated_on>2019-07-22 14:35:41</sys_updated_on>
         <unloadable>false</unloadable>
     </sys_script_fix>
 </record_update>
