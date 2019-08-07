@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="" section_id="914d4ef52f3a3300a08dea5ef699b6f0" sys_domain="global" table="x_374824_vcenter_i_virtual_machines_tran" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>u_json</element>
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-07-23 04:26:34</sys_created_on>
+            <sys_id>114d8ef52f3a3300a08dea5ef699b610</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_374824_vcenter_i_virtual_machines_tran" sys_domain="global" view="Default view">914d4ef52f3a3300a08dea5ef699b6f0</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-07-23 04:26:34</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>memory_size_mib</element>
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-07-23 04:26:34</sys_created_on>
+            <sys_id>954d8ef52f3a3300a08dea5ef699b610</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_374824_vcenter_i_virtual_machines_tran" sys_domain="global" view="Default view">914d4ef52f3a3300a08dea5ef699b6f0</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-07-23 04:26:34</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>vm</element>
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-07-23 04:26:34</sys_created_on>
+            <sys_id>194d8ef52f3a3300a08dea5ef699b610</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_374824_vcenter_i_virtual_machines_tran" sys_domain="global" view="Default view">914d4ef52f3a3300a08dea5ef699b6f0</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-07-23 04:26:34</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>name</element>
+            <position>3</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-07-23 04:26:34</sys_created_on>
+            <sys_id>994d8ef52f3a3300a08dea5ef699b610</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_374824_vcenter_i_virtual_machines_tran" sys_domain="global" view="Default view">914d4ef52f3a3300a08dea5ef699b6f0</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-07-23 04:26:34</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>power_state</element>
+            <position>4</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-07-23 04:26:34</sys_created_on>
+            <sys_id>1d4d8ef52f3a3300a08dea5ef699b610</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_374824_vcenter_i_virtual_machines_tran" sys_domain="global" view="Default view">914d4ef52f3a3300a08dea5ef699b6f0</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-07-23 04:26:34</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>cpu_count</element>
+            <position>5</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-07-23 04:26:34</sys_created_on>
+            <sys_id>9d4d8ef52f3a3300a08dea5ef699b610</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_374824_vcenter_i_virtual_machines_tran" sys_domain="global" view="Default view">914d4ef52f3a3300a08dea5ef699b6f0</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-07-23 04:26:34</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>password</element>
+            <position>6</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-07-23 04:26:34</sys_created_on>
+            <sys_id>114d8ef52f3a3300a08dea5ef699b611</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_374824_vcenter_i_virtual_machines_tran" sys_domain="global" view="Default view">914d4ef52f3a3300a08dea5ef699b6f0</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-07-23 04:26:34</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>endpoint</element>
+            <position>7</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-07-23 04:26:34</sys_created_on>
+            <sys_id>914d8ef52f3a3300a08dea5ef699b611</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_374824_vcenter_i_virtual_machines_tran" sys_domain="global" view="Default view">914d4ef52f3a3300a08dea5ef699b6f0</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-07-23 04:26:34</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption/>
+            <header>false</header>
+            <name>x_374824_vcenter_i_virtual_machines_tran</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2019-07-23 04:26:34</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>914d4ef52f3a3300a08dea5ef699b6f0</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_374824_vcenter_i_virtual_machines_tran</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="vCenter Integration" source="x_374824_vcenter_i">5c2978222f623300a08dea5ef699b680</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="vCenter Integration">5c2978222f623300a08dea5ef699b680</sys_scope>
+            <sys_update_name>sys_ui_section_914d4ef52f3a3300a08dea5ef699b6f0</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2019-07-23 04:26:34</sys_updated_on>
+            <sys_user/>
+            <title>true</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

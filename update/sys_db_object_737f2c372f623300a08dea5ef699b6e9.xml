@@ -23,16 +23,16 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2019-07-16 16:29:34</sys_created_on>
         <sys_id>737f2c372f623300a08dea5ef699b6e9</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Virtual Machines</sys_name>
         <sys_package display_value="vCenter Integration" source="x_374824_vcenter_i">5c2978222f623300a08dea5ef699b680</sys_package>
         <sys_policy/>
         <sys_scope display_value="vCenter Integration">5c2978222f623300a08dea5ef699b680</sys_scope>
         <sys_update_name>sys_db_object_737f2c372f623300a08dea5ef699b6e9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-07-16 16:29:34</sys_updated_on>
+        <sys_updated_on>2019-07-23 18:07:08</sys_updated_on>
         <update_access>true</update_access>
-        <user_role display_value="x_374824_vcenter_i.admin" name="x_374824_vcenter_i.admin">ee6d13d72f223300a08dea5ef699b605</user_role>
+        <user_role display_value="x_374824_vcenter_i.admin,user" name="x_374824_vcenter_i.admin,user">2119098e2f323300a08dea5ef699b677</user_role>
         <ws_access>true</ws_access>
     </sys_db_object>
 </record_update>

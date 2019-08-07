@@ -4,14 +4,14 @@
         <hint/>
         <name>Virtual Machines</name>
         <order/>
-        <roles>x_374824_vcenter_i.admin</roles>
+        <roles>x_374824_vcenter_i.admin,user</roles>
         <sys_class_name>sys_ui_application</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2019-07-16 16:29:34</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>ccafa0772f623300a08dea5ef699b639</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Virtual Machines</sys_name>
         <sys_overrides/>
         <sys_package display_value="vCenter Integration" source="x_374824_vcenter_i">5c2978222f623300a08dea5ef699b680</sys_package>
@@ -19,6 +19,6 @@
         <sys_scope display_value="vCenter Integration">5c2978222f623300a08dea5ef699b680</sys_scope>
         <sys_update_name>sys_ui_application_ccafa0772f623300a08dea5ef699b639</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-07-16 16:29:34</sys_updated_on>
+        <sys_updated_on>2019-07-23 17:36:53</sys_updated_on>
     </sys_ui_application>
 </record_update>
